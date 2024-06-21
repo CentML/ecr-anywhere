@@ -1,0 +1,37 @@
+name: ecr-anywhere
+
+namespace: ecr-anywhere
+
+serviceName: ecr-anywhere
+
+serviceAccountName: ecr-anywhere
+
+tlsSecretName: ecr-anywhere-tls
+
+deployment:
+  annotations: {}
+  replicas: 1
+  pod: 
+    annotations: {}
+    container:
+      env: {}
+
+mutatingWebhookConfiguration:
+  annotations: {}
+
+image:
+  # TODO Temporary personal repo
+  repository: ghcr.io/centml/ecr-anywhere
+  tag: v1.0.0
+  imagePullPolicy: Always
+
+cronjob:
+  # ECR Credentials expire every 12 hours. The cron job runs every hour
+  # by default and refreshes them if they're going to expire in in the
+  # next 6 hours. This is to ensure that the credentials are always
+  # up-to-date, and give some time to respond if something goes wrong. 
+  schedule: "20 * * * *"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
+  restartPolicy: OnFailure
+  backoffLimit: 1

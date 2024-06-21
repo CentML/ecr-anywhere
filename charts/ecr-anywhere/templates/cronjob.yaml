@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  annotations:
+  labels:
+    app: {{ .Values.name }}
+spec:
+  # Cron schedule expression (e.g., "0 */12 * * *")
+  schedule: "{{ .Values.cronjob.schedule }}"    
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }} # Default 3
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit }} # Default 1
+
+  # Refreshes should be fast, so we can replace the job if it's still running
+  concurrencyPolicy: Replace 
+
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: {{ .Values.name }}
+          annotations:
+        spec:
+          serviceAccountName: {{ .Values.serviceAccountName }}
+
+          restartPolicy: {{ .Values.cronjob.restartPolicy }} 
+          {{- if .Values.cronjob.backoffLimit }} 
+          backoffLimit: {{ .Values.cronjob.backoffLimit }} 
+          {{- end }} 
+
+          containers:
+            - name: {{ .Values.name }}
+              image: {{- printf " %s:%s" .Values.image.repository  .Values.image.tag }}
+              command: ["/ecr-anywhere-refresher"]
