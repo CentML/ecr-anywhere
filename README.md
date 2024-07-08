@@ -6,7 +6,7 @@ ECR Anywhere makes it easy to use container images hosted in private ECR reposit
   1) A Mutating Webhook that intercepts create/update verbs on labeled Kubernetes Secrets, injecting fresh ECR credentials which expire in 12 hours.
   2) A CronJob that periodically checks the specially labeled Kubernetes Secrets to see if they need to be refreshed. If they do, an annotation is updated, synchronously triggering a credential refresh by the Mutating Webhook.
 
-The benefits of this approach are simplicity in implimentation and operations (monitoring/alerting). 
+The benefits of this approach are the simplicity in implementation and operations (monitoring/alerting). 
 
 From an operational perspective: 
 
