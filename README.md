@@ -1,7 +1,7 @@
 # ECR Anywhere
 
 ## Description
-ECR Anywhere makes it easy use images hosted in private ECR repositories on any Kubernetes cluster, esspecially those hosted outside of AWS. It works via two components: 
+ECR Anywhere makes it easy to use container images hosted in private ECR repositories on any Kubernetes cluster, especially those hosted outside of AWS. It works via two components: 
 
   1) A Mutating Webhook that intercepts create/update verbs on labeled Kubernetes Secrets, injecting fresh ECR credentials which expire in 12 hours.
   2) A CronJob that periodically checks the specially labeled Kubernetes Secrets to see if they need to be refreshed. If they do, an annotation is updated, synchronously triggering a credential refresh by the Mutating Webhook.
