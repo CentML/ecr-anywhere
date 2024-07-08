@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "simple-sidecar.fullname" -}}
+{{- define "ecr-anywhere.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "simple-sidecar.chart" -}}
+{{- define "ecr-anywhere.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "simple-sidecar.labels" -}}
-helm.sh/chart: {{ include "simple-sidecar.chart" . }}
-{{ include "simple-sidecar.selectorLabels" . }}
+{{- define "ecr-anywhere.labels" -}}
+helm.sh/chart: {{ include "ecr-anywhere.chart" . }}
+{{ include "ecr-anywhere.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "simple-sidecar.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "simple-sidecar.name" . }}
+{{- define "ecr-anywhere.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "ecr-anywhere.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "simple-sidecar.serviceAccountName" -}}
+{{- define "ecr-anywhere.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "simple-sidecar.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "ecr-anywhere.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
