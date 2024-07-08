@@ -8,7 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     # This job runs only if the tag_name starts with 'v', this avoids conflicts with helm
-    # chart releases which have simple-sidecar-helm-chart-{{ .Version }} as the release name    
+    # chart releases which have ecr-anywhere-helm-chart-{{ .Version }} as the release name    
     if: startsWith(github.event.release.tag_name, 'v')
 
     steps:
