@@ -76,7 +76,7 @@ func NewECRCredentialInjector(ecrClient ECRClient, loggers *loggers.Loggers) Cre
 	}
 }
 
-// InjectionPermitted determines whether a mutation is required for the specified pod and if so
+// InjectionPermitted determines whether a mutation is required for the specified secret and if so
 // which mutation to use
 func (ic *ecrCredentialInjector) InjectionPermitted(ignoredList []string, metadata *metav1.ObjectMeta) bool {
 	// skip special kubernete system namespaces
