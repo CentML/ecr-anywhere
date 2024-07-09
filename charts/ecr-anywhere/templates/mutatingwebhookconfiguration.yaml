@@ -1,0 +1,44 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: {{ .Values.name }} 
+  {{- if .Values.mutatingWebhookConfiguration.annotations }}
+  annotations:
+    {{- toYaml .Values.mutatingWebhookConfiguration.annotations | nindent 4 }}
+  {{- end }}
+webhooks:
+- admissionReviewVersions:
+  - v1
+  - v1beta1
+  clientConfig:
+    caBundle: {{ .Values.caBundle }}
+    service:
+      name: {{ .Values.name }}
+      namespace: {{ .Values.namespace }}
+      path: /sync
+      port: 443
+  failurePolicy: Fail
+  matchPolicy: Equivalent
+  name: ecr-anywhere.centml.ai
+  namespaceSelector:
+    matchLabels:
+      # must match credentials.go
+      ecr-anywhere.centml.ai/namespace: "enabled"
+  objectSelector: 
+    matchLabels:
+      # must match credentials.go
+      ecr-anywhere.centml.ai/managed: "true"
+  reinvocationPolicy: Never
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - secrets
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
