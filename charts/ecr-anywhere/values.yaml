@@ -20,7 +20,6 @@ mutatingWebhookConfiguration:
   annotations: {}
 
 image:
-  # TODO Temporary personal repo
   repository: ghcr.io/centml/ecr-anywhere
   tag: v1.0.0
   imagePullPolicy: Always
