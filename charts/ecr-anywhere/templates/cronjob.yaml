@@ -21,7 +21,10 @@ spec:
         metadata:
           labels:
             app: {{ .Values.name }}
+        {{- if .Values.deployment.pod.annotations }}
           annotations:
+            {{- toYaml .Values.deployment.pod.annotations | nindent 12 }}
+          {{- end }}
         spec:
           serviceAccountName: {{ .Values.serviceAccountName }}
 
