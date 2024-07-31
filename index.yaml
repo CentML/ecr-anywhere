@@ -3,6 +3,16 @@ entries:
   ecr-anywhere:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2024-07-31T20:43:42.81648Z"
+    description: A Helm chart for Kubernetes
+    digest: 258d19ca6db84037dc11bc33dd3842d22c98a3d17fd7f97f1e1c6d15ceba228c
+    name: ecr-anywhere
+    type: application
+    urls:
+    - https://github.com/CentML/ecr-anywhere/releases/download/ecr-anywhere-helm-chart-1.0.2/ecr-anywhere-1.0.2.tgz
+    version: 1.0.2
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2024-07-30T21:00:25.448143671Z"
     description: A Helm chart for Kubernetes
     digest: 3e65548695a57009083d7870c97732d861d55e5a32ec14c7d80d86b99e26769a
@@ -21,4 +31,4 @@ entries:
     urls:
     - https://github.com/CentML/ecr-anywhere/releases/download/ecr-anywhere-helm-chart-1.0.0/ecr-anywhere-1.0.0.tgz
     version: 1.0.0
-generated: "2024-07-30T21:00:25.44815419Z"
+generated: "2024-07-31T20:43:42.816500268Z"
