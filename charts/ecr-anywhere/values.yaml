@@ -34,3 +34,5 @@ cronjob:
   failedJobsHistoryLimit: 1
   restartPolicy: OnFailure
   backoffLimit: 1
+  pod: 
+    annotations: {}
