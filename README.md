@@ -16,7 +16,7 @@ From an operational perspective:
 
 ## Quick Start
 
-You'll need a credentials that can assume a role with the following policy. Note, you can substitute `*` with the ARN of the repository if you want to limit the role to a specific repository. For multiple specific repos, use add more statement with different ARNs.
+You'll need credentials that can assume a role with the following policy. Note, you can substitute `*` with the ARN of the repository if you want to limit the role to a specific repository. For multiple specific repos, use add more statement with different ARNs.
 
 ```json
 {
