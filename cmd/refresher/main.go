@@ -48,7 +48,7 @@ func main() {
 		log.Fatalf("Failed to create kubernetes clientset: %v", err)
 	}
 
-	loggers := loggers.NewLoggers(log.New(os.Stderr, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile), nil, log.New(os.Stderr, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile))
+	loggers := loggers.NewLoggers(log.New(os.Stderr, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile), log.New(os.Stderr, "WARN: ", log.Ldate|log.Ltime|log.Lshortfile), log.New(os.Stderr, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile))
 	r := credentials.NewK8sCredentialRefreshRequester(clientset, loggers)
 
 	// TODO stop hardcoding
