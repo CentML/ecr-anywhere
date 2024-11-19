@@ -21,7 +21,7 @@ mutatingWebhookConfiguration:
 
 image:
   repository: ghcr.io/centml/ecr-anywhere
-  tag: v1.0.0
+  tag: v1.0.1
   imagePullPolicy: Always
 
 cronjob:
