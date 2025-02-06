@@ -88,7 +88,7 @@ metadata:
     ecr-anywhere.centml.ai/managed: "true"
 type: kubernetes.io/dockerconfigjson
 data:
-  .dockerconfigjson: "FAKE"
+  .dockerconfigjson: eyJhdXRocyI6eyJ5b3VyLnByaXZhdGUucmVnaXN0cnkuZXhhbXBsZS5jb20iOnsidXNlcm5hbWUiOiJqYW5lZG9lIiwicGFzc3dvcmQiOiJ4eHh4eHh4eHh4eCIsImVtYWlsIjoiamRvZUBleGFtcGxlLmNvbSJ9fX0K
 ---
 apiVersion: v1
 kind: Pod
