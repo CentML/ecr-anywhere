@@ -111,7 +111,8 @@ func (ecu *ecrCredentialInjector) Inject(secret *corev1.Secret) (patching.Operat
 	// Call the API to get ECR credentials
 	res, err := ecu.ecrClient.GetAuthorizationToken(context.Background(), &ecr.GetAuthorizationTokenInput{})
 	if err != nil {
-		return nil, fmt.Errorf("failed to get authorization token: %w", err)
+		ecu.ErrorLogger.Printf("Failed to get authorization token: %v", err)
+		panic(fmt.Errorf("failed to get authorization token: %w", err))
 	}
 	ecu.InfoLogger.Print("Received authorization data")
 
