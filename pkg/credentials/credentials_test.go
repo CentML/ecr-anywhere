@@ -254,15 +254,20 @@ func TestInject(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			tt.setupMock()
-
-			patches, err := injector.Inject(tt.secret)
 			if tt.expectedError != "" {
-				assert.EqualError(t, err, tt.expectedError)
+				if tt.name == "GetAuthorizationToken fails" {
+					assert.PanicsWithError(t, tt.expectedError, func() {
+						_, _ = injector.Inject(tt.secret)
+					})
+				} else {
+					_, err := injector.Inject(tt.secret)
+					assert.EqualError(t, err, tt.expectedError)
+				}
 			} else {
+				patches, err := injector.Inject(tt.secret)
 				assert.NoError(t, err)
 				assert.Equal(t, tt.expectedPatches, patches)
 			}
-
 			mockECRClient.AssertExpectations(t)
 		})
 	}
