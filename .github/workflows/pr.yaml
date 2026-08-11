@@ -5,6 +5,8 @@ on:
     branches:
       - '**'  # Triggers on all branches
 
+permissions: read-all
+
 jobs:
   build:
     runs-on: ubuntu-latest

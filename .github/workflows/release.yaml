@@ -4,6 +4,10 @@ on:
   release:
     types: [published]  # Triggers on release tagging
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
