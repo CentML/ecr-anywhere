@@ -18,16 +18,15 @@ COPY pkg/ pkg/
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${BUILDPLATFORM} go build -a -o ecr-anywhere-webhook ./cmd/webhook
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${BUILDPLATFORM} go build -a -o ecr-anywhere-refresher ./cmd/refresher
 
-FROM alpine:latest
-
+# OSRB-approved base; CGO_ENABLED=0 binaries need no libc. Already runs as
+# non-root (uid 1000), so the explicit USER is no longer required.
+FROM nvcr.io/nvidia/distroless/static:v4.0.0
 
 WORKDIR /
 
 # install binaries
 COPY --from=builder /workspace/ecr-anywhere-webhook .
 COPY --from=builder /workspace/ecr-anywhere-refresher .
-
-USER 65532:65532
 
 # webhook is the default entrypoint
 ENTRYPOINT ["/ecr-anywhere-webhook"]
