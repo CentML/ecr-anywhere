@@ -104,3 +104,11 @@ spec:
   imagePullSecrets:
   - name: ecr-secret
 ```yaml
+
+## Contributing
+
+This project is currently not accepting contributions.
+
+## License
+
+Apache License 2.0 — see [LICENSE](LICENSE). Third-party notices: [THIRD-PARTY.txt](THIRD-PARTY.txt).
